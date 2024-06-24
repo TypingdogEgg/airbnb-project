@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 // 对axios二次封装
 import axios from "axios";
 import { BASE_URL, TIMEOUT } from "./config";
