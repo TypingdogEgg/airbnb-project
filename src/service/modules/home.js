@@ -5,3 +5,15 @@ export const getHomeGoodPriceData = ()=>{
         url:'/home/goodprice'
     })
 }
+
+export const getHomeHighScoreData = ()=>{
+    return hyRequest.get({
+        url:'/home/highscore'
+    })
+}
+
+export const getHomeDiscountData = ()=>{
+    return hyRequest.get({
+        url:'/home/discount',
+    })
+}

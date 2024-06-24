@@ -8,5 +8,9 @@ export const HomeWrapper = styled.div`
         .good-price{
             margin-top: 20px;
         }
+
+        .high-score{
+            margin-top: 20px;
+        }
     }
 `

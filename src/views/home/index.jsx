@@ -3,24 +3,29 @@ import { fetchHomeDataAction } from '@/store/modules/home'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { HomeWrapper } from './style'
 import HomeBanner from './child-components/home-banner'
-import SecondHeader from '../../components/second-header'
+import HomeSectionV1 from './child-components/home-section-v1'
+import SectionHeader from '../../components/section-header'
+import SectionRooms from '../../components/section-rooms'
 
 const Home = memo(() => {
   const dispatch = useDispatch()
   // 获取store (浅拷贝 state改变才会更新store)
-  const {goodPriceData} = useSelector((state)=>state.home,shallowEqual)
+  const { goodPriceData,highScoreData,discountData } = useSelector((state) => state.home, shallowEqual)
   // 发起请求
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(fetchHomeDataAction())
-  },[dispatch])
+  }, [dispatch])
 
   return (
     <HomeWrapper>
       <HomeBanner />
       <div className="content">
-        <div className="good-price">
-          <SecondHeader title={goodPriceData.title} subtitle={'ewfewf'} />
+        <div className="discount" style={{marginTop:'30px'}}>
+          <SectionHeader title={discountData.title} subtitle={discountData.subtitle} />
+          <SectionRooms roomData={discountData.dest_list?.['成都']} itemWidth='33.3333%' />
         </div>
+        <HomeSectionV1 sectionData={goodPriceData}></HomeSectionV1>
+        <HomeSectionV1 sectionData={highScoreData}></HomeSectionV1>
       </div>
     </HomeWrapper>
   )

@@ -6,9 +6,13 @@ export const HeaderWrapper = styled.div`
     .content{
         display: flex;
         align-items: center;
+        
+        &:hover .more{
+            visibility: visible;
+        }
 
         .titles{
-            height: 80px;
+            /* height: 80px; */
             
             .title{
                 font-size: 22px;
@@ -22,6 +26,7 @@ export const HeaderWrapper = styled.div`
         }
 
         .more{
+            visibility: hidden;
             margin-left: 20px;
         }
     }
