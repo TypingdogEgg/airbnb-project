@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getHomeGoodPriceData, getHomeHighScoreData, getHomeDiscountData } from "@/service";
+import { getHomeGoodPriceData, getHomeHighScoreData, getHomeDiscountData,getHomeRecommendData, } from "@/service";
 
 export const fetchHomeDataAction = createAsyncThunk('fetchdata',(payload,{dispatch})=>{
     // const res = await getHomeGoodPriceData()
@@ -9,12 +9,16 @@ export const fetchHomeDataAction = createAsyncThunk('fetchdata',(payload,{dispat
         dispatch(changeGoodPriceDataAction(res))
     })
     getHomeHighScoreData().then(res=>{
-        console.log(res);
+        // console.log(res);
         dispatch(changeHighScoreDataAction(res))
     })
     getHomeDiscountData().then(res=>{
-        console.log(res);
+        // console.log(res);
         dispatch(changeDiscountDataAction(res))
+    })
+    getHomeRecommendData().then(res=>{
+        // console.log(res);
+        dispatch(changeRecommendDataAction(res))
     })
 
 })
@@ -25,6 +29,7 @@ const homeSlice = createSlice({
         goodPriceData:{},
         highScoreData:{},
         discountData:{},
+        recommendData:{},
     },
     reducers:{
         changeGoodPriceDataAction(state,{payload}){
@@ -35,6 +40,9 @@ const homeSlice = createSlice({
         },
         changeDiscountDataAction(state,{payload}){
             state.discountData = payload
+        },
+        changeRecommendDataAction(state,{payload}){
+            state.recommendData = payload
         }
     },
     // 添加异步请求与state关系
@@ -44,5 +52,5 @@ const homeSlice = createSlice({
     //     })
     // }
 })
-export const {changeGoodPriceDataAction,changeHighScoreDataAction,changeDiscountDataAction } = homeSlice.actions
+export const {changeGoodPriceDataAction,changeHighScoreDataAction,changeDiscountDataAction,changeRecommendDataAction } = homeSlice.actions
 export default homeSlice.reducer
